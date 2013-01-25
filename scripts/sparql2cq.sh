@@ -17,4 +17,4 @@ sed "s/\s*$VAR\s\+a\s\+$ID:\($ID\)\s\+./\2(?\1),/g" | \
 sed "s/\s*$VAR\s\+$ID:\($ID\)\s\+$VAR\s\+./\2(?\1,?\3),/g" | \
 sed "s/}//g" | \
 tr "\\n" " " | \
-sed "s/\,\s*$/./g"
+sed "s/\,\s*$//g"
