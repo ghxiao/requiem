@@ -41,7 +41,7 @@
 
     <jar destfile="${dist}/requiem-cli.jar" filesetmanifest="mergewithoutmain">
       <manifest>
-        <attribute name="Main-Class" value="RequiemTerminal"/>
+        <attribute name="Main-Class" value="MyRequiemCLI"/>
         <attribute name="Built-By" value="${user.name}" />
         <attribute name="Class-Path" value="${manifest_cp}"/>
       </manifest>
