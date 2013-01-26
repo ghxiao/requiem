@@ -20,16 +20,14 @@ public class MyRequiemCLI {
 	 * @param args
 	 * 0 - query file
 	 * 1 - ontology file
-	 * 2 - output path
-	 * 3 - mode (N|F|G)
+	 * 2 - mode (N|F|G)
 	 */
 	public static void main(String[] args) throws Exception{
 		
-		if(args.length == 4 && (args[3].equals("N") || args[3].equals("F") || args[3].equals("G"))){
+		if(args.length == 3 && (args[2].equals("N") || args[2].equals("F") || args[2].equals("G"))){
 			String queryFile = args[0];
 			String ontologyFile = args[1];
-			String outputFilePrefix = args[2];
-			String mode = args[3];
+			String mode = args[2];
 			
 			String ontologyURI = new File(ontologyFile).toURI().toString();
 			
@@ -51,24 +49,15 @@ public class MyRequiemCLI {
 
 	    	long end = System.currentTimeMillis();
 			
-			printResultToFile(outputFilePrefix + "RQM" + mode + "-", queryFile, ontologyFile, end-begin, rewriting.size(), query.m_canonicalRepresentation, rewriting);
+			printResult(queryFile, ontologyFile, end-begin, rewriting.size(), query.m_canonicalRepresentation, rewriting);
 			
 		}
 		else{
-			throw new Exception("Use: java Requiem query.txt ontology.owl outPath mode(N|F|G)");
+			throw new Exception("Use: java Requiem query.cq ontology.owl mode(N|F|G)");
 		}
 	}
 	
-	private static void printResultToFile(String outputFilestr, String queryFile, String ontologyFile, long time, int rewritingSize, String query, ArrayList<Clause> rewriting) throws Exception{
-		// int counter = 0;
-		// File outputFile = new File(outputFilestr + counter + ".txt");
-		// while (outputFile.exists()) {
-		// 	counter++;
-		// 	outputFile = new File(outputFilestr + counter + ".txt");
-		// }
-		
-        //        FileWriter out = new FileWriter(outputFile);
-        java.io.PrintStream out = System.out;
+	private static void printResult(String queryFile, String ontologyFile, long time, int rewritingSize, String query, ArrayList<Clause> rewriting) throws Exception{
         System.err.print("==================SUMMARY==================\n");
         System.err.print("Ontology file:             " + ontologyFile.substring(ontologyFile.lastIndexOf("/") + 1) + "\n"); 
         System.err.print("Query:                     " + query + "\n");
@@ -89,10 +78,10 @@ public class MyRequiemCLI {
 		});
 		int i = 0;
 		for(Clause c: rewriting){
-			out.print(c.m_canonicalRepresentation + "\n");
+			System.out.print(c.m_canonicalRepresentation + "\n");
 		}
 		
-        out.close();
+        System.out.close();
 	}
 
 }
