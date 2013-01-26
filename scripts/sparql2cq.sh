@@ -1,8 +1,10 @@
 #!/bin/sh
 # gnu sed is required
-# USAGE: ./pexQuery q1.sparql > q1.pex
+# USAGE: ./sparql2cq q1.sparql > q1.cq
 
-VAR='?[A-Za-z]\([A-Za-z0-9]\)\+'
+# NOTE: the variables must be in the form of Xn, n>=0; otherwise requiem will complain
+
+VAR='?[A-Za-z]\([A-Za-z0-9]*\)\+'
 ID='[A-Za-z0-9]\+'
 
 cat $1 | \
